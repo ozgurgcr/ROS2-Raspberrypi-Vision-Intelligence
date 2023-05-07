@@ -1,0 +1,216 @@
+<robot name="vision_rpi_bot">
+
+  <link name="base_footprint" />
+<!-- ////////////////////////////////////  BASE LINK //////////////////////////////////////////////// -->
+  <link name="base_link">
+    <inertial>
+      <mass value="4" />
+      <origin xyz="0 0 0.1" rpy="0 0 0" />
+      <inertia ixx="0.00355" iyy="0.01265" izz="0.013832" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/base.dae" />
+
+      </geometry>
+
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/base.dae" />
+      </geometry>
+    </collision>
+
+  </link>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin rpy="0 0 0" xyz="0 0 0.14" />
+  </joint>
+<!-- ////////////////////////////////////  COVER LINK //////////////////////////////////////////////// -->
+
+  <link name="cover_link">
+    <inertial>
+      <mass value="0.5" />
+      <origin xyz="0 0 0.1" rpy="0 0 0" />
+      <inertia ixx="0.00355" iyy="0.01265" izz="0.013832" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/cover.dae" />
+      </geometry>
+
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/cover.dae" />
+      </geometry>
+    </collision>
+
+
+  </link>
+
+  <joint name="cover_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="cover_link" />
+    <origin xyz="0.0015  0 0.08" rpy="0 0 0" />
+
+  </joint>
+
+<!-- ////////////////////////////////////  Right Wheel LINK //////////////////////////////////////////////// -->
+
+  <link name="wheel_right_link">
+    <inertial>
+      <mass value="1" />
+      <inertia ixx="0.001444223" iyy="0.00280875" izz="0.001444223" ixy="0.0" ixz="0.0" iyz="0.0" />
+      <origin />
+    </inertial>
+
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 3.14"/>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/wheel.dae" />
+      </geometry>
+
+
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/wheel.dae" />
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="wheel_right_joint" type="continuous">
+    <origin xyz="-0.232  0.14 -0.045  " rpy="0 0.0 -1.57" />
+    <parent link="base_link" />
+    <child link="wheel_right_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+<!-- ////////////////////////////////////  Left Wheel LINK //////////////////////////////////////////////// -->
+
+  <link name="wheel_left_link">
+    <inertial>
+      <mass value="1" />
+      <inertia ixx="0.001444223" iyy="0.00280875" izz="0.001444223" ixy="0.0" ixz="0.0" iyz="0.0" />
+      <origin />
+    </inertial>
+
+    <visual>
+
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/wheel.dae" />
+      </geometry>
+
+
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/wheel.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel_left_joint" type="continuous">
+    <origin xyz="0.233  0.14 -0.045  " rpy="0 0.0 -1.57" />
+    <parent link="base_link" />
+    <child link="wheel_left_link" />
+    <axis xyz="0.0 1 0" />
+
+  </joint>
+<!-- ////////////////////////////////////  Caster Holder LINK //////////////////////////////////////////////// -->
+
+<link name="caster_holder_link">
+
+  <inertial>
+    <mass value="0.1" />
+    <inertia ixx="0.0001295" iyy="0.0001295" izz="0.000199322" ixy="0.0" ixz="0.0" iyz="0.0" />
+    <origin />
+  </inertial>
+
+  <visual>
+    <geometry>
+      <mesh filename="package://vision_rpi_bot/meshes/caster_holder.dae" />
+    </geometry>
+  </visual>
+
+  <collision>
+    <geometry>
+      <mesh filename="package://vision_rpi_bot/meshes/caster_holder.dae" />
+    </geometry>
+  </collision>
+
+</link>
+
+<joint name="caster_holder_joint" type="continuous">
+  <origin xyz="0 -0.19 -0.015" rpy="0.0 0.0 0.0" />
+  <axis xyz="0 0 1" />
+  <parent link="base_link" />
+  <child link="caster_holder_link" />
+</joint>
+<!-- ////////////////////////////////////  Caster Wheel LINK //////////////////////////////////////////////// -->
+   <link name="caster_wheel_link">
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.0001295" iyy="0.0001295" izz="0.000199322" ixy="0.0" ixz="0.0" iyz="0.0" />
+      <origin />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/caster_wheel.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/caster_wheel.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_wheel_joint" type="continuous">
+    <origin xyz="0 -0.003  -0.086" rpy="0.0 0.0 0.0" />
+    <axis xyz="1 0 0" />
+    <parent link="caster_holder_link" />
+    <child link="caster_wheel_link" />
+  </joint>
+
+
+<!-- ////////////////////////////////////  Camera LINK //////////////////////////////////////////////// -->
+
+  <link name="camera_link">
+
+    <inertial>
+      <mass value="0.75" />
+      <inertia ixx="0.0001295" iyy="0.0001295" izz="0.000199322" ixy="0.0" ixz="0.0" iyz="0.0" />
+      <origin />
+    </inertial>
+
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 1.57"/>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/rpi_camera.dae" />
+      </geometry>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://vision_rpi_bot/meshes/rpi_camera.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0 -0.18 0.2" rpy="0.0 0 -1.57" />
+    <parent link="base_link" />
+    <child link="camera_link" />
+
+  </joint>
+
+</robot>
